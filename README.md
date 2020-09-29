@@ -1,3 +1,3 @@
-# A chat box with four playes game .. 
+# A chat box with four player game .. 
 ----
 ## using React and Socket.io
