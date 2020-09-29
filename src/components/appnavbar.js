@@ -30,12 +30,12 @@ class Appnavbar extends React.Component {
                   Home <span className="sr-only">(current)</span>
                 </a>
               </li>
-              <li className="nav-item">
+              {/* <li className="nav-item">
                 <a className="nav-link" href="/">
                   Link
                 </a>
-              </li>
-              <li className="nav-item dropdown">
+              </li> */}
+              {/* <li className="nav-item dropdown">
                 <a
                   className="nav-link dropdown-toggle"
                   href="/"
@@ -59,14 +59,14 @@ class Appnavbar extends React.Component {
                     Something else here
                   </a>
                 </div>
-              </li>
-              <li className="nav-item">
+              </li> */}
+              {/* <li className="nav-item">
                 <a className="nav-link disabled" href="/">
                   Disabled
                 </a>
-              </li>
+              </li> */}
             </ul>
-            <form className="form-inline my-2 my-lg-0">
+            {/* <form className="form-inline my-2 my-lg-0">
               <input
                 className="form-control mr-sm-2"
                 type="search"
@@ -79,7 +79,7 @@ class Appnavbar extends React.Component {
               >
                 Search
               </button>
-            </form>
+            </form> */}
           </div>
         </nav>
       </div>

@@ -1,10 +1,10 @@
 import React from "react";
-import socketIOClient from "socket.io-client";
+
 import Message from "./message"
 
-const ENDPOINT = "http://localhost:4001";
 
-var socket=socketIOClient(ENDPOINT);
+
+// var this.props.socket=socketIOClient(ENDPOINT);
 
 class Messagebox extends React.Component{
 
@@ -16,17 +16,20 @@ class Messagebox extends React.Component{
   }
   componentDidMount(){
     
-     socket.on("chat message",(data)=>{ //formatte author:"",message:""
+     this.props.socket.on("chat message",(data)=>{ //formatte author:"",message:""
         var a=this.state.msg;;
         a.unshift(data);
+        if(a.length>12){
+          a.pop();
+        }
         this.setState({msg:a});
     })
     
-    socket.on("reauthenticate",()=>{
+    this.props.socket.on("reauthenticate",()=>{
       if(this.state.authenticated)
       this.sendsecret();
     })
-    socket.on("userslist",(data)=>{
+    this.props.socket.on("userslist",(data)=>{
       this.setState({users:data});
     })
     
@@ -37,15 +40,15 @@ class Messagebox extends React.Component{
   }
 
   sendmessage=()=>{
-    // const socket=socketIOClient(ENDPOINT);
-    socket.emit("chat message",{author:this.state.name,message:this.state.message});
+    // const this.props.socket=socketIOClient(ENDPOINT);
+    this.props.socket.emit("chat message",{author:this.state.name,message:this.state.message});
     //formatte author:"",message:""
     this.setState({message:""});
   }
 
   sendsecret=()=>{
-    socket.emit("login",{name:this.state.name,secret:this.state.secret});
-
+    this.props.socket.emit("login",{name:this.state.name,secret:this.state.secret});
+    this.props.setuser({name:this.state.name,secret:this.state.secret});
     this.setState({authenticated:true});
   }
   
@@ -53,7 +56,7 @@ class Messagebox extends React.Component{
 
   render(){
     return (
-      <div style={{minHeight:"800px",}}>
+      <div style={{minHeight:"800px",maxWidth:"80%"}}>
         <div className="jumbotron">
           <h1 className="display-4">Chat Box</h1></div>
           <div className="container">
